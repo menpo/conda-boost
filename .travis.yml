@@ -11,7 +11,7 @@ install:
 - export PATH=$HOME/miniconda/bin:$PATH
 
 script:
-- python condaci.py auto ./conda --binstaruser $BINSTAR_USER --binstarkey $BINSTAR_KEY
+- python condaci.py auto ./conda --binstarchannel main --binstaruser $BINSTAR_USER --binstarkey $BINSTAR_KEY
 
 notifications:
   slack: menpo:19gyWImMkOfCj0iDAgTbDlDA
