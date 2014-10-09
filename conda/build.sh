@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $PY3K -eq 0 ]; then
+if [ $PY3K -eq 1 ]; then
   M_PY_VER=${PY_VER}m
 else
   M_PY_VER=${PY_VER}
