@@ -1,0 +1,13 @@
+import os ;
+local pythonVersion = [ os.environ PY_VER ] ;
+local condaPrefix = [ os.environ PREFIX ] ;
+
+# ---------------------
+# Python 3 configuration.
+# ---------------------
+using python 
+    : $(pythonVersion)                                 # Version
+    : $(condaPrefix)/bin/python                        # Python Path
+    : $(condaPrefix)/include/python$(pythonVersion)m   # include path
+    : $(condaPrefix)/lib                               # lib path(s)
+    ;

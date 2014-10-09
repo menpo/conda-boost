@@ -1,11 +1,9 @@
 #!/bin/bash
 
-if [ $PY3K -eq 1 ]; then
-  export CFLAGS="-I$PREFIX/include/python${PY_VER}m $CFLAGS"
-fi
+sed -i 's:using python:#using python:g' bootstrap.sh
 
-./bootstrap.sh --with-python-root="$PREFIX"
-./bjam -j2 -sBZIP2_LIBPATH="$PREFIX/lib" -sBZIP2_INCLUDE="$PREFIX/include" link=shared stage
+./bootstrap.sh 
+./bjam --debug-configuration --user-config="$RECIPE_DIR/user-config.jam" -j2 -sBZIP2_LIBPATH="$PREFIX/lib" -sBZIP2_INCLUDE="$PREFIX/include" link=shared stage
 
 mkdir -p $PREFIX/lib
 cp -a stage/lib $PREFIX
