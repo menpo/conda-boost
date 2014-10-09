@@ -1,5 +1,6 @@
 import os ;
 local pythonVersion = [ os.environ PY_VER ] ;
+local pythonInclude = [ os.environ PYTHON_INCLUDE_DIR ] ;
 local condaPrefix = [ os.environ PREFIX ] ;
 
 # ---------------------
@@ -8,6 +9,6 @@ local condaPrefix = [ os.environ PREFIX ] ;
 using python 
     : $(pythonVersion)                                 # Version
     : $(condaPrefix)/bin/python                        # Python Path
-    : $(condaPrefix)/include/python$(pythonVersion)m   # include path
+    : $(pythonInclude)                                 # include path
     : $(condaPrefix)/lib                               # lib path(s)
     ;
