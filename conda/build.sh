@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ $PY3K ]; then
-  export M_PY_VER="$PY_VERm"
+  M_PY_VER=$PY_VERm
 else
-  export M_PY_VER="$PY_VER"
+  M_PY_VER=$PY_VER
 fi
 
 ./bootstrap.sh --with-python-version="$M_PY_VER" --with-python-root="$PREFIX"
