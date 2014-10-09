@@ -2,10 +2,10 @@
 
 setlocal enableextensions
 
-if %PY3K% == 1(
-    SET MSVC_VER="10.0"
+if %PY3K% EQU 1 (
+    set MSVC_VER="10.0"
 ) else (
-    SET MSVC_VER="9.0"
+    set MSVC_VER="9.0"
 )
 
 bootstrap
