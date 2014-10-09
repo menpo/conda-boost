@@ -1,9 +1,7 @@
 #!/bin/bash
 
 if [ $PY3K -eq 1 ]; then
-  M_PY_VER=${PY_VER}m
-else
-  M_PY_VER=${PY_VER}
+  export CFLAGS="-I$PREFIX/include/python${PY_VER}m $CFLAGS"
 fi
 
 ./bootstrap.sh --with-python-version="$M_PY_VER" --with-python-root="$PREFIX"
