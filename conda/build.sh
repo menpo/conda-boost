@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./bootstrap.sh --with-python=python$PY_VER
+./bootstrap.sh --with-python-version=$PY_VER --with-python-root="$PREFIX"
 ./bjam -j2 -sBZIP2_LIBPATH="$PREFIX/lib" -sBZIP2_INCLUDE="$PREFIX/include" link=shared stage
 
 mkdir -p $PREFIX/lib
