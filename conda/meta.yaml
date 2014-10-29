@@ -1,20 +1,22 @@
 package:
   name: boost
-  version: 1.55.0
+  version: "1.55.0"
 
 source:
-  fn: boost_1_55_0.tar.bz2
-  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.bz2/download
-  md5: d6eef4b4cacb2183f2bf265a5a03a354
+  fn: boost_1_55_0.zip
+  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download
+  sha1: 1d479557177c49d74001c904979b60cce8cc2d12
 
 requirements:
   build:
     - python
     - bzip2 1.0.6
+    - zlib 1.2.7  # [win]
 
   run:
     - python
     - bzip2 1.0.6
+    - zlib 1.2.7  # [win]
 
 about:
   home: http://www.boost.org/

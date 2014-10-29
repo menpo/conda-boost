@@ -8,11 +8,21 @@ if %PY3K% EQU 1 (
     set MSVC_VER="9.0"
 )
 
-bootstrap
-bjam -j2 -sBZIP2_LIBPATH="%PREFIX%\lib" -sBZIP2_INCLUDE="%PREFIX%\include" link=shared toolset="msvc-%MSVC_VER%" stage
+if %ARCH% EQU 32 (
+    call "%VCINSTALLDIR%\vcvarsall.bat" x86
+)
+if %ARCH% EQU 64 (
+    call "%VCINSTALLDIR%\vcvarsall.bat" x64
+)
 
-md "%PREFIX%\lib"
-robocopy "stage\lib" "%PREFIX%\lib" /E
+python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))" > temp.txt
+set /p PYTHON_INCLUDE_DIR=<temp.txt
 
-md "%PREFIX%\include"
-robocopy "boost" "%PREFIX%\include\boost" /E
+call bootstrap.bat
+
+bjam.exe --debug-configuration  --user-config="%RECIPE_DIR%/user-config-win.jam" -sBZIP2_LIBPATH="%LIBRARY_LIB%" -sBZIP2_INCLUDE="%LIBRARY_INC%" -sZLIB_INCLUDE="%LIBRARY_INC%" -sZLIB_LIBPATH="%LIBRARY_LIB%" link=shared toolset="msvc-%MSVC_VER%" stage
+
+robocopy "stage\lib" "%LIBRARY_LIB%" /E /NFL
+robocopy "boost" "%LIBRARY_INC%\boost" /E /NFL /NDL
+
+exit 0
