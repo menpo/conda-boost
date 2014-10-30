@@ -24,5 +24,3 @@ bjam.exe --debug-configuration  --user-config="%RECIPE_DIR%/user-config-win.jam"
 
 robocopy "stage\lib" "%LIBRARY_LIB%" /E /NFL
 robocopy "boost" "%LIBRARY_INC%\boost" /E /NFL /NDL
-
-exit 0
