@@ -16,8 +16,8 @@ chmod -R 777 .*
 
 # We need a host of options to get things to work on OSX
 if [ `uname` == Darwin ]; then
-  CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
-  LINKFLAGS="${LINKFLAGS} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
+  CXXFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
+  LINKFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
   PATCH_DIR="${RECIPE_DIR}/1.55.0_patches"
 
   # Patches boost::atomic for LLVM 3.4 as it is used on OS X 10.9 with Xcode 5.1
