@@ -3,9 +3,13 @@ package:
   version: "1.55.0"
 
 source:
-  fn: boost_1_55_0.zip
-  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download
-  sha1: 1d479557177c49d74001c904979b60cce8cc2d12
+  fn: boost_1_55_0.zip  # [win]
+  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download  # [win]
+  sha1: 1d479557177c49d74001c904979b60cce8cc2d12  # [win]
+  fn: boost_1_55_0.tar.bz2  # [unix]
+  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.bz2/download  # [unix]
+  sha1: cef9a0cc7084b1d639e06cd3bc34e4251524c840  # [unix]
+  
 
 build:
   number: 1
@@ -14,12 +18,12 @@ requirements:
   build:
     - python
     - bzip2 1.0.6
-    - zlib 1.2.7  # [win]
+    - zlib 1.2.7
 
   run:
     - python
     - bzip2 1.0.6
-    - zlib 1.2.7  # [win]
+    - zlib 1.2.7
 
 about:
   home: http://www.boost.org/
