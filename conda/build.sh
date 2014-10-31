@@ -36,7 +36,12 @@ if [ `uname` == Darwin ]; then
   # AND change the version min >= 10.7
   #CXXFLAGS="${CXXFLAGS} -std=c++11 -stdlib=libc++"
   #LINKFLAGS="${LINKFLAGS} -stdlib=libc++"
+  
+  CXXFLAGS="cxxflags=${CXXFLAGS}"
+  LINKFLAGS="linkflags=${LINKFLAGS}"
 else
+  CXXFLAGS=""
+  LINKFLAGS=""
   B2ARGS="toolset=gcc"
 fi
 
@@ -45,9 +50,9 @@ fi
 # We make sure that we build the appropriate ARCH and set the CXX flags appropriately
 ./bjam --debug-configuration --user-config="${RECIPE_DIR}/user-config.jam" \
                              -sBZIP2_LIBPATH="${LIBRARY_PATH}" -sBZIP2_INCLUDE="${INCLUDE_PATH}" \
-							 -sZLIB_LIBPATH="${LIBRARY_PATH}"  -sZLIB_INCLUDE="${INCLUDE_PATH}" \
+                             -sZLIB_LIBPATH="${LIBRARY_PATH}"  -sZLIB_INCLUDE="${INCLUDE_PATH}" \
                              link=shared address-model=${ARCH} architecture=x86 \
-							 cxxflags="${CXXFLAGS}" linkflags="${LINKFLAGS}" ${B2ARGS} stage
+                             ${CXXFLAGS} ${LINKFLAGS} ${B2ARGS} stage
 
 # Copy the files across
 cp -a stage/lib "$PREFIX"
