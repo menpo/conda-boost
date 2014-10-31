@@ -20,7 +20,13 @@ set /p PYTHON_INCLUDE_DIR=<temp.txt
 
 call bootstrap.bat
 
-bjam.exe --debug-configuration  --user-config="%RECIPE_DIR%/user-config-win.jam" -sBZIP2_LIBPATH="%LIBRARY_LIB%" -sBZIP2_INCLUDE="%LIBRARY_INC%" -sZLIB_INCLUDE="%LIBRARY_INC%" -sZLIB_LIBPATH="%LIBRARY_LIB%" link=shared toolset="msvc-%MSVC_VER%" stage
+bjam.exe --debug-configuration ^
+         --user-config="%RECIPE_DIR%/user-config-win.jam" ^
+		 -sBZIP2_LIBPATH="%LIBRARY_LIB%" -sBZIP2_INCLUDE="%LIBRARY_INC%" -sBZIP2_BINARY=bzip2 ^
+		 -sZLIB_INCLUDE="%LIBRARY_INC%" -sZLIB_LIBPATH="%LIBRARY_LIB%" -sZLIB_BINARY=zlib ^
+		 link=shared toolset="msvc-%MSVC_VER%" stage
 
 robocopy "stage\lib" "%LIBRARY_LIB%" /E /NFL
 robocopy "boost" "%LIBRARY_INC%\boost" /E /NFL /NDL
+
+exit 0
