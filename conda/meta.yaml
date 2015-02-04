@@ -1,18 +1,17 @@
 package:
   name: boost
-  version: "1.55.0"
+  version: "1.56.0"
 
 source:
-  fn: boost_1_55_0.zip  # [win]
-  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download  # [win]
-  sha1: 1d479557177c49d74001c904979b60cce8cc2d12  # [win]
-  fn: boost_1_55_0.tar.bz2  # [unix]
-  url: http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.bz2/download  # [unix]
-  sha1: cef9a0cc7084b1d639e06cd3bc34e4251524c840  # [unix]
-  
+  fn: boost_1_56_0.zip  # [win]
+  url: http://sourceforge.net/projects/boost/files/boost/1.56.0/boost_1_56_0.zip/download  # [win]
+  sha1: 15b9719a92cd2a80170d54cfb9c3990a56193c56  # [win]
+  fn: boost_1_56_0.tar.gz  # [unix]
+  url: http://sourceforge.net/projects/boost/files/boost/1.56.0/boost_1_56_0.tar.gz/download  # [unix]
+  sha1: 1639723c6bdff873cdb6d747f8f8c9d9f066434d  # [unix]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
