@@ -18,16 +18,6 @@ chmod -R 777 .*
 if [ `uname` == Darwin ]; then
   CXXFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
   LINKFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
-  PATCH_DIR="${RECIPE_DIR}/1.55.0_patches"
-
-  # Patches boost::atomic for LLVM 3.4 as it is used on OS X 10.9 with Xcode 5.1
-  # https://github.com/Homebrew/homebrew/issues/27396
-  # https://github.com/Homebrew/homebrew/pull/27436
-  patch -Np2 -i "${PATCH_DIR}/6bb71fdd.diff"
-  patch -Np2 -i "${PATCH_DIR}/e4bde20f.diff"
-  # Patch boost::serialization for Clang
-  # https://svn.boost.org/trac/boost/ticket/8757
-  patch -Np1 -i "${PATCH_DIR}/0005-Boost.S11n-include-missing-algorithm.patch"
 
   # Need to default to clang over g++ (though in later version g++ is clang)
   B2ARGS="toolset=clang"
