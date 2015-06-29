@@ -1,5 +1,8 @@
 #!/bin/bash
 
+INCLUDE_PATH=$PREFIX/include
+LIBRARY_PATH=$PREFIX/lib
+
 # I want to set the Python options myself in the user-config.jam
 # If I don't do this then this clashes with my custom
 # user-config.jam and boost prefers this over the custom settings.
