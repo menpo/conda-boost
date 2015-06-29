@@ -11,18 +11,18 @@ source:
   sha1: 1639723c6bdff873cdb6d747f8f8c9d9f066434d  # [unix]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - python
-    - bzip2 1.0.6
-    - zlib 1.2.7
+    - bzip2 1.0.*
+    - zlib 1.2.*
 
   run:
     - python
-    - bzip2 1.0.6
-    - zlib 1.2.7
+    - bzip2 1.0.*
+    - zlib 1.2.*
 
 about:
   home: http://www.boost.org/
