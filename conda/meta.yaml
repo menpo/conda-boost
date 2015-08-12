@@ -10,8 +10,11 @@ source:
   url: http://sourceforge.net/projects/boost/files/boost/1.56.0/boost_1_56_0.tar.gz/download  # [unix]
   sha1: 1639723c6bdff873cdb6d747f8f8c9d9f066434d  # [unix]
 
+  patches:
+    - bootstrap_python_1_56_0.patch
+
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:

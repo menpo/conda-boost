@@ -3,13 +3,14 @@
 INCLUDE_PATH=$PREFIX/include
 LIBRARY_PATH=$PREFIX/lib
 
-# I want to set the Python options myself in the user-config.jam
-# If I don't do this then this clashes with my custom
-# user-config.jam and boost prefers this over the custom settings.
-sed -i.bak 's/using python/#using python/g' bootstrap.sh
-
 # Grab the include dir (borrowed from homebrew boost-python)
 export PYTHON_INCLUDE_DIR=`python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`
+
+if [ $PY3K -eq 1]
+  export PY_VER_FULL="3.4m"
+else
+  export PY_VER_FULL=$PY_VER
+fi
 
 # Seems that sometimes this is required
 chmod -R 777 .*
