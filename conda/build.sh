@@ -3,11 +3,6 @@
 INCLUDE_PATH=$PREFIX/include
 LIBRARY_PATH=$PREFIX/lib
 
-# I want to set the Python options myself in the user-config.jam
-# If I don't do this then this clashes with my custom
-# user-config.jam and boost prefers this over the custom settings.
-sed -i.bak 's/using python/#using python/g' bootstrap.sh
-
 # Grab the include dir (borrowed from homebrew boost-python)
 export PYTHON_INCLUDE_DIR=`python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`
 
@@ -16,9 +11,20 @@ chmod -R 777 .*
 
 # Setup the boost building, this is fairly simple.
 ./bootstrap.sh --prefix="${PREFIX}" --libdir="${LIBRARY_PATH}"
-
 # We need a host of options to get things to work on OSX
 if [ `uname` == Darwin ]; then
+
+  # Boost is not happy about the 'm' on the end of the lib
+  # therefore wejust symlink it without the 'm' as suggested
+  # here:
+  # https://groups.google.com/a/continuum.io/forum/#!searchin/anaconda/boost/anaconda/bAHVcb27vwY/3De25q8Z648J
+  if [ $PY3K -eq 1 ]; then
+    CDIR=`pwd`
+    cd $LIBRARY_PATH
+    ln -s libpython3.4m.dylib libpython3.4.dylib
+    cd $CDIR
+  fi
+  
   CXXFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
   LINKFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
 

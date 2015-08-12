@@ -1,0 +1,23 @@
+--- bootstrap.sh
++++ bootstrap.sh
+@@ -277,7 +277,8 @@
+ 
+     if test "x$PYTHON_ROOT" = x; then
+         echo -n "Detecting Python root... "
+-        PYTHON_ROOT=`$PYTHON -c "import sys; print sys.prefix"`
++        # Python 3 print function!
++        PYTHON_ROOT=`$PYTHON -c "import sys; print (sys.prefix)"`
+         echo $PYTHON_ROOT
+     fi    
+ fi
+@@ -345,7 +346,8 @@
+   cat >> project-config.jam <<EOF
+ 
+ # Python configuration
+-using python : $PYTHON_VERSION : $PYTHON_ROOT ;
++# Disable this so that bjam prefers my own config
++# using python : $PYTHON_VERSION : $PYTHON_ROOT ;
+ EOF
+ fi
+ 
+
