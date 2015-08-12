@@ -6,20 +6,25 @@ LIBRARY_PATH=$PREFIX/lib
 # Grab the include dir (borrowed from homebrew boost-python)
 export PYTHON_INCLUDE_DIR=`python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`
 
-if [ $PY3K -eq 1]
-  export PY_VER_FULL="3.4m"
-else
-  export PY_VER_FULL=$PY_VER
-fi
-
 # Seems that sometimes this is required
 chmod -R 777 .*
 
 # Setup the boost building, this is fairly simple.
 ./bootstrap.sh --prefix="${PREFIX}" --libdir="${LIBRARY_PATH}"
-
 # We need a host of options to get things to work on OSX
 if [ `uname` == Darwin ]; then
+
+  # Boost is not happy about the 'm' on the end of the lib
+  # therefore wejust symlink it without the 'm' as suggested
+  # here:
+  # https://groups.google.com/a/continuum.io/forum/#!searchin/anaconda/boost/anaconda/bAHVcb27vwY/3De25q8Z648J
+  if [ $PY3K -eq 1 ]; then
+    CDIR=`pwd`
+    cd $LIBRARY_PATH
+    ln -s libpython3.4m.dylib libpython3.4.dylib
+    cd $CDIR
+  fi
+  
   CXXFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
   LINKFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
 
