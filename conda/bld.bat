@@ -1,9 +1,13 @@
 setlocal enableextensions
 
-if %PY3K% EQU 1 (
+if "%PY_VER%" == "3.4" (
     set MSVC_VER="10.0"
 ) else (
-    set MSVC_VER="9.0"
+    if "%PY_VER%" == "3.5" (
+        set MSVC_VER="14.0"
+    ) else (
+        set MSVC_VER="9.0"
+    )
 )
 
 if %ARCH% EQU 32 (
