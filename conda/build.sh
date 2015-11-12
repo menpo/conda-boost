@@ -21,7 +21,7 @@ if [ `uname` == Darwin ]; then
   if [ $PY3K -eq 1 ]; then
     CDIR=`pwd`
     cd $LIBRARY_PATH
-    ln -s libpython3.4m.dylib libpython3.4.dylib
+    ln -s libpython${PY_VER}m.dylib libpython${PY_VER}.dylib
     cd $CDIR
   fi
   
