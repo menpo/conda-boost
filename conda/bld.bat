@@ -10,12 +10,8 @@ if "%PY_VER%" == "3.4" (
     )
 )
 
-if %ARCH% EQU 32 (
-    call "%VCINSTALLDIR%\vcvarsall.bat" x86
-	set EXTRA_ARGS=""
-)
+set EXTRA_ARGS=""
 if %ARCH% EQU 64 (
-    call "%VCINSTALLDIR%\vcvarsall.bat" x64
 	set EXTRA_ARGS="address-model=64"
 )
 
@@ -30,7 +26,7 @@ bjam.exe --debug-configuration ^
 		 -sZLIB_INCLUDE="%LIBRARY_INC%" -sZLIB_LIBPATH="%LIBRARY_LIB%" -sZLIB_BINARY=zlib ^
 		 link=shared toolset="msvc-%MSVC_VER%" %EXTRA_ARGS% stage
 
-robocopy "stage\lib" "%LIBRARY_LIB%" /E /NFL
+robocopy "stage\lib" "%LIBRARY_BIN%" /E /NFL
 robocopy "boost" "%LIBRARY_INC%\boost" /E /NFL /NDL
 
 exit 0
