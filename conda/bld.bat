@@ -15,6 +15,7 @@ if %ARCH% EQU 64 (
 	set EXTRA_ARGS="address-model=64"
 )
 
+
 python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))" > temp.txt
 set /p PYTHON_INCLUDE_DIR=<temp.txt
 
