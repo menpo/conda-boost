@@ -16,7 +16,7 @@ if %ARCH% EQU 64 (
 )
 
 
-python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))" > temp.txt
+%PYTHON% -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))" > temp.txt
 set /p PYTHON_INCLUDE_DIR=<temp.txt
 
 call bootstrap.bat
