@@ -27,7 +27,11 @@ bjam.exe --debug-configuration ^
 		 -sZLIB_INCLUDE="%LIBRARY_INC%" -sZLIB_LIBPATH="%LIBRARY_LIB%" -sZLIB_BINARY=zlib ^
 		 link=shared toolset="msvc-%MSVC_VER%" %EXTRA_ARGS% stage
 
+if !errorlevel! NEQ 0 exit /b !errorlevel!
+         
 robocopy "stage\lib" "%LIBRARY_BIN%" /E /NFL
 robocopy "boost" "%LIBRARY_INC%\boost" /E /NFL /NDL
+
+if !errorlevel! GTR 8 exit /b !errorlevel!
 
 exit 0
