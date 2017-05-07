@@ -25,6 +25,8 @@ if [ `uname` == Darwin ]; then
     cd $CDIR
   fi
   
+  export MACOSX_VERSION_MIN="10.9"
+  export MACOSX_DEPLOYMENT_TARGET="${MACOSX_VERSION_MIN}"
   CXXFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
   LINKFLAGS="-mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
 
