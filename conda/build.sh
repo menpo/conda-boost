@@ -15,7 +15,7 @@ chmod -R 777 .*
 if [ `uname` == Darwin ]; then
 
   # Boost is not happy about the 'm' on the end of the lib
-  # therefore wejust symlink it without the 'm' as suggested
+  # therefore we just symlink it without the 'm' as suggested
   # here:
   # https://groups.google.com/a/continuum.io/forum/#!searchin/anaconda/boost/anaconda/bAHVcb27vwY/3De25q8Z648J
   if [ $PY3K -eq 1 ]; then
@@ -31,10 +31,9 @@ if [ `uname` == Darwin ]; then
   # Need to default to clang over g++ (though in later version g++ is clang)
   B2ARGS="toolset=clang"
   
-  # If we want C++11 support, we need to enable these flags
-  # AND change the version min >= 10.7
-  #CXXFLAGS="${CXXFLAGS} -std=c++11 -stdlib=libc++"
-  #LINKFLAGS="${LINKFLAGS} -stdlib=libc++"
+  # We want C++11 support
+  CXXFLAGS="${CXXFLAGS} -std=c++11 -stdlib=libc++"
+  LINKFLAGS="${LINKFLAGS} -stdlib=libc++"
   
   CXXFLAGS="cxxflags=${CXXFLAGS}"
   LINKFLAGS="linkflags=${LINKFLAGS}"
